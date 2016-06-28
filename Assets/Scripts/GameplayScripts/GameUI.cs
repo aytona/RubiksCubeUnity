@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TestRotation : MonoBehaviour {
+public class GameUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
