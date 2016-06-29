@@ -1,12 +1,11 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using System.Linq;
 
 namespace EditorScripts
 {
     public class CubeGenerator : EditorWindow
     {
-        private int[] cubeSize;
+        private Vector3 cubeSize;
         private GameObject[][][] cubeObj;
 
         [MenuItem("LevelEditor/CubeGenerator")]
@@ -17,18 +16,22 @@ namespace EditorScripts
 
         void OnGUI()
         {
-            if (cubeSize == null)
+            cubeSize = EditorGUILayout.Vector3Field("Cube Dimensions", cubeSize, GUILayout.ExpandWidth(false));
+            if (GUILayout.Button("Generate", GUILayout.ExpandWidth(false)))
             {
-                cubeSize = new int[3];
+                if (cubeSize.x  == 0|| cubeSize.y == 0 || cubeSize.z == 0)
+                {
+                    ShowNotification(new GUIContent("Values must be all nonzero"));
+                    return;
+                }
+                
+                GenerateNewCube(cubeSize);
             }
-            GUILayout.Label("Cube Dimensions", EditorStyles.boldLabel);
-            EditorGUILayout.BeginHorizontal();
-            for (int i = 0; i < cubeSize.Length; i++)
-            {
-                GUILayout.TextArea(char.ConvertFromUtf32(i + 88) + ":", EditorStyles.miniLabel); // Might be a better way to get the char of the axis
-                EditorGUILayout.IntField(cubeSize[i], GUILayout.ExpandWidth(false));
-            }
-            EditorGUILayout.EndHorizontal();
+        }
+
+        private void GenerateNewCube(Vector3 cubeDimension)
+        {
+
         }
     }
 }
