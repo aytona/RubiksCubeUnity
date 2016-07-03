@@ -1,15 +1,34 @@
 ﻿using UnityEngine;
-using System.Collections;
+using Aytona;
 
-public class GameUI : MonoBehaviour {
+namespace InGameScripts
+{
+    public class GameUI
+    {
+        private int[] cubeSize = new int[3];
+        private GameObject cubeObj;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        void Start()
+        {
+            cubeObj = GameObject.Find("Cube");
+            for (int i = 0; i < cubeSize.Length; i++)
+            {
+                // TODO: Readable cube properties
+            }
+        }
+
+        void Update()
+        {
+
+        }
+
+        public void GenerateNewCube()
+        {
+            if (cubeSize[0] == 0 || cubeSize[1] == 0 || cubeSize[2] == 0)
+            {
+                return;
+            }
+            CreateCube.NewCube(new Vector3(cubeSize[0], cubeSize[1], cubeSize[2]));
+        }
+    }
 }
