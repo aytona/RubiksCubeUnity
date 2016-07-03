@@ -1,5 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using Aytona;
 
 namespace EditorScripts
 {
@@ -24,14 +25,8 @@ namespace EditorScripts
                     ShowNotification(new GUIContent("Values must be all nonzero"));
                     return;
                 }
-                
-                GenerateNewCube(cubeSize);
+                CreateCube.NewCube(cubeSize);
             }
-        }
-
-        private void GenerateNewCube(Vector3 cubeDimension)
-        {
-
         }
     }
 }
